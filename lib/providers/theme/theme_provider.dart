@@ -5,16 +5,18 @@ import 'package:open_weather_provider/providers/providers.dart';
 
 part 'theme_state.dart';
 
-class ThemeProvider with ChangeNotifier {
-  ThemeState _state = ThemeState.initial();
-  ThemeState get state => _state;
+class ThemeProvider {
 
-  void update(WeatherProvider wp) {
+  final WeatherProvider wp;
+
+  ThemeProvider({required this.wp});
+
+
+  ThemeState get state {
     if (wp.state.weather.temp > kWarmOrNot) {
-      _state = _state.copyWith(appTheme: AppTheme.light);
+      return ThemeState();
     } else {
-      _state = _state.copyWith(appTheme: AppTheme.dark);
+      return ThemeState(appTheme: AppTheme.dark);
     }
-    notifyListeners();
   }
 }
