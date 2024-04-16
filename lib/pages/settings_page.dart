@@ -17,7 +17,7 @@ class SettingsPage extends StatelessWidget {
           title: Text('온도 단위'),
           subtitle: Text('섭씨/화씨 (기본: 섭씨)'),
           trailing: Switch(
-            value: context.watch<TempSettingsProvider>().state.tempUnit == TempUnit.celsius? true : false,
+            value: context.watch<TempSettingsState>().tempUnit == TempUnit.celsius? true : false,
             onChanged: (bool value) {
               context.read<TempSettingsProvider>().toggleTempUnit();
             },

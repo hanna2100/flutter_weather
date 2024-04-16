@@ -1,19 +1,17 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:open_weather_provider/providers/providers.dart';
+import 'package:state_notifier/state_notifier.dart';
 
 part 'temp_settings_state.dart';
 
-class TempSettingsProvider with ChangeNotifier {
-  TempSettingsState _state = TempSettingsState.initial();
-
-  TempSettingsState get state => _state;
+class TempSettingsProvider extends StateNotifier<TempSettingsState>{
+  TempSettingsProvider(): super(TempSettingsState.initial());
 
   void toggleTempUnit() {
-    _state = _state.copyWith(
-        tempUnit: _state.tempUnit == TempUnit.celsius
+    state = state.copyWith(
+        tempUnit: state.tempUnit == TempUnit.celsius
             ? TempUnit.fahrenheit
             : TempUnit.celsius);
-    notifyListeners();
   }
 }
